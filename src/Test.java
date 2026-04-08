@@ -34,6 +34,7 @@ public class Test {
                 break;
             case 2:
                 System.out.println("---> Gerer les hospitalisations");
+                GererHospitalisations();
                 break;
             case 3:
                 System.out.println("--> bien quitte");
@@ -64,10 +65,13 @@ public class Test {
                 case 1:
                     System.out.println("--> Affichage des Consulations");
                     //appeler la fct de l'affichage
+                    //cette fonction sera void static qui affichera directement les consultations enregistres:
+                    afficherCons();
                     break;
                 case 2:
                     System.out.println("--> Ajout des consultations");
                     //appeler la fonction de l'ajout
+                    //ajouter la consultation a la liste
                      Consultation temp = AjouterCons();
                      consultations.add(temp);
 
@@ -79,6 +83,48 @@ public class Test {
                     System.out.println(" !! INVALID INPUT !! ");
             }
         }
+
+
+
+    }
+    static void GererHospitalisations(){
+        int choix =0;
+        while(choix != 3){
+            System.out.println("---------------------------------");
+            System.out.println(" 1. Ajouter une hospitalisation");
+            System.out.println(" 2. Afficher les hospitalisations");
+            System.out.println(" 3. Quitter");
+            System.out.println();
+            System.out.println("-> Je choisi: ");
+            choix = scanner.nextInt();
+            System.out.println("----------------------------------");
+
+
+            switch(choix){
+                case 1:
+                    //creer une hospi
+                    //ajouter l'hospi a la liste
+                    System.out.println("-->Ajouter une hospitalisation");
+
+                    break;
+                case 2:
+                    //afficher les hospi
+                    System.out.println("--> Afficher les hospitalisations");
+                    break;
+                case 3:
+                    //sortir
+                    System.out.println("c'est bien quittee");
+                    break;
+                default:
+                    System.out.println("!!invalid input");
+            }
+
+        }
+
+
+
+
+
 
 
 
@@ -106,22 +152,39 @@ public class Test {
                     med = ajouterMed();
                     medecins.add(med);
                     //get other properties
+                    System.out.println();
                     System.out.print("Entrer la date du consultation: ");
-                    date = scanner.nextLine();
+                    date = scanner.next();
                     System.out.print("Entrer les notes du consultation: ");
-                    note = scanner.nextLine();
+                    note = scanner.next();
                     System.out.print("Entrer le service: ");
-                    service = scanner.nextLine();
+                    service = scanner.next();
 
                     //retourner
                     return  new ConsultationHopital(med,pat,date,note,service);
 
                 case 2:
                     System.out.println("--> Consultation Domicile");
-                    //fct d'ajouter un medecin
+                    Patient patd;
+                    Medecin medd;
+                    String dated, notesd, adresse;
                     //fct d'ajouter un patient
+                    patd = ajouterPat();
+                    patients.add(patd);
+                    //fct d'ajouter un medecin
+                    medd = ajouterMed();
+                    medecins.add(medd);
                     //get other properties
-                    break;
+                    System.out.println();
+                    System.out.print("Entrer la date de consultation domicile: ");
+                    dated = scanner.next();
+                    System.out.print("Entrer les notes de la consultation: ");
+                    notesd = scanner.next();
+                    System.out.print("Entrer l'adresse de la consultation: ");
+                    adresse = scanner.next();
+
+                    return new ConsultationDomicile(medd,patd,dated,notesd,adresse);
+
                 case 3:
                     System.out.println("bien quitte");
                     break;
@@ -183,21 +246,22 @@ public class Test {
             nom = scanner.next();
             System.out.print("Entrer le inpe du medecin: ");
             inpe = scanner.next();
-            System.out.println("Entrer le service de medecin: ");
+            System.out.print("Entrer le service de medecin: ");
             service = scanner.next();
-            System.out.println("Entrer la grade du medecin: ");
+            System.out.print("Entrer la grade du medecin: ");
             grade = scanner.next();
+            System.out.println();
 
             while(true){
-                System.out.println("Est ce que le medecin est specialiste (yes/no)? : ");
+                System.out.print("Est ce que le medecin est specialiste (yes/no)? : ");
                 qst = scanner.next();
 
                 if(qst.equals("yes")){
-                    System.out.println("entrer la specialite du medecin: ");
+                    System.out.print("entrer la specialite du medecin: ");
                     spec = scanner.next();
                     //check if chirurgien and then return
                     while(true){
-                        System.out.println("Est ce que le medecin est chirurgien? (yes/no): ");
+                        System.out.print("Est ce que le medecin est chirurgien? (yes/no): ");
                         String qst2 = scanner.next();
                         if(qst2.equals("yes")){
                             return new MedecinSpecialiste(nom,inpe,service,grade,spec,true);
@@ -217,6 +281,80 @@ public class Test {
                 }
             }
     }
+    static void afficherCons(){
+        System.out.println("---------------------------------");
+        System.out.println("Voici la liste des consultaions: ");
+        System.out.println("---------------------------------");
+        for(Consultation c : consultations ){
+            int i =1;
+            System.out.println("Consultation #"+i);
+            System.out.println(c);
+            i++;
+        }
+        System.out.println("---------------------------------");
+
+
+    }
+    static Hospitalisation AjouterHos(){
+        int choix = 0 ;
+
+        while(choix != 5){
+            Medecin med ;
+            Patient pt;
+            String dateEnt , motif, des;
+            int dEst, dReel;
+            System.out.println("-----------------------------------");
+            System.out.println("Choisi le type de hospitalisation: ");
+            System.out.println(" 1.Hospitalisation Complete");
+            System.out.println(" 2.Hospitalisation de Jour");
+            System.out.println(" 3.Hospitalisation de Nuit");
+            System.out.println(" 3.Reanimation");
+            System.out.println(" 5.Quitter");
+            System.out.print("Je choisis: ");
+            choix = scanner.nextInt();
+            System.out.println("-----------------------------------");
+
+            switch(choix){
+                case 1:
+                    //there will be a tiny repitition in this whole switch section that we can optimize later
+                    System.out.println("-->Hospitalisation complete: ");
+                    System.out.println();
+                    System.out.println("Le medecin consulté: ");
+                    med = ajouterMed();
+                    System.out.println("Le patient concerne: ");
+                    pt = ajouterPat();
+                    System.out.print("La date d'entree: ");
+                    dateEnt = scanner.next();
+                    System.out.print("Le motif: ");
+                    motif = scanner.next();
+                    System.out.println("La description: ");
+                    des = scanner.nextLine();
+                    System.out.print("Duree estimative: ");
+                    dEst = scanner.nextInt();
+                    System.out.println("Duree reel: ");
+                    dReel = scanner.nextInt();
+
+                    return new HospitalisationComplete(med,pt,dateEnt,motif,des,dEst,dReel);
+
+                case 2:
+                    System.out.println("-->Hospitalisation de Jour: ");
+
+                case 3:
+                    System.out.println("-->Hospitalisation de Nuit: ");
+
+
+                default :
+                    System.out.println("-->Reanimation: ");
+
+
+            }
+
+        }
+
+
+      return null;
+    }
+
 }
 
     //dont forget to close the scanner
