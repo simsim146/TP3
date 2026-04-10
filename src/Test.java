@@ -552,4 +552,5 @@ public class Test {
 
 //dont forget to close the scanner
 //ajouter une recherche des consultations en se basant sur le patient
+//mettre les fcts dans un package de business en format d'objets
 
