@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Test {
@@ -9,55 +10,56 @@ public class Test {
     static ArrayList<Hospitalisation> hospitalisations = new ArrayList<>();
     static ArrayList<Consultation> consultations = new ArrayList<>();
 
-  static void main(String[] args){
+    static void main(String[] args){
 
 
-    int choix = 0;
-    while(choix != 5){
-        System.out.println();
-        System.out.println();
-        System.out.println("======================================");
-        System.out.println("Choisir une fonctionnalite (1-2): ");
-        System.out.println(" 1. Gerer les consultations");
-        System.out.println(" 2. Gerer les hospitalisations");
-        System.out.println(" 3. Gerer les patients ");
-        System.out.println(" 4. Gerer les medecins");
-        System.out.println(" 5. Quitter");
-        System.out.println("--------------------------------------");
-        System.out.print("Je choisis: ");
-        choix = scanner.nextInt();
-        System.out.println("======================================");
+        int choix = 0;
+        while(choix != 3){
+            System.out.println();
+            System.out.println();
+            System.out.println("======================================");
+            System.out.println("Choisir une fonctionnalite (1-2): ");
+            System.out.println(" 1. Gerer les consultations");
+            System.out.println(" 2. Gerer les hospitalisations");
+            System.out.println(" 3. Gerer les patients");
+            System.out.println(" 4. Gerer les medecins");
+            System.out.println(" 5. Quitter");
+            System.out.println("--------------------------------------");
+            System.out.print("Je choisis: ");
+            choix = scanner.nextInt();
+            System.out.println("======================================");
 
-        switch (choix){
-            case 1:
-                System.out.println("---> Gerer les consultation");
-                GererConsultations();
-                break;
-            case 2:
-                System.out.println("---> Gerer les hospitalisations");
-                GererHospitalisations();
-                break;
-            case 3:
-                System.out.println("--> Gerer les patients");
-                //creer la fct
-                break;
-            case 4:
-                System.out.println("--> Gerer les medecins");
-                //creer la fct void static
-                break;
-            case 5:
-                System.out.println("--> bien quitte");
-                break;
-            default:
-                System.out.println("!! Invalid input !!");
+            switch (choix){
+                case 1:
+                    System.out.println("---> Gerer les consultation");
+                    GererConsultations();
+                    break;
+                case 2:
+                    System.out.println("---> Gerer les hospitalisations");
+                    GererHospitalisations();
+                    break;
+                case 3:
+                    System.out.println("---> Gerer les patients");
+                    GererPat();
+                    break;
+                case 4:
+                    System.out.println("---> Gerer les medecins");
+                    GererMed();
+                    break;
+                case 5:
+                    System.out.println("--> bien quitte");
+                    break;
+                default:
+                    System.out.println("!! Invalid input !!");
+            }
         }
-    }
 
-}
+    }//end main
+
     //notice that you cant declare a method within the main, cuz main itself is a static method
     // in other words, you cant declare a method within a method
-    //Fonction pour gerer les consulations
 
+    //Fonctions de gestion
     static void GererConsultations(){
         int choix = 0;
         while(choix != 3){
@@ -81,8 +83,8 @@ public class Test {
                     System.out.println("--> Ajout des consultations");
                     //appeler la fonction de l'ajout
                     //ajouter la consultation a la liste
-                     Consultation temp = AjouterCons();
-                     consultations.add(temp);
+                    Consultation temp = AjouterCons();
+                    consultations.add(temp);
 
                     break;
                 case 3:
@@ -96,6 +98,7 @@ public class Test {
 
 
     }
+
     static void GererHospitalisations(){
         int choix =0;
         while(choix != 3){
@@ -114,9 +117,9 @@ public class Test {
                     //creer une hospi
                     //ajouter l'hospi a la liste
                     System.out.println("-->Ajouter une hospitalisation");
-                    Hospitalisation hh ;
-                    hh =  AjouterHos();
-                    hospitalisations.add(hh);
+                    Hospitalisation hs;
+                    hs = AjouterHos();
+                    hospitalisations.add(hs);
                     break;
                 case 2:
                     //afficher les hospi
@@ -141,6 +144,88 @@ public class Test {
 
 
     }
+
+    static void GererPat(){
+        int choix = 0;
+        while (choix !=4){
+            System.out.println("---------------------------");
+            System.out.println("La gestion des patients: ");
+            System.out.println(" 1. Ajouter un patient");
+            System.out.println(" 2. Chercher un patient");
+            System.out.println(" 3. Afficher les patients");
+            System.out.println(" 4. Quitter");
+            System.out.println("Je choisi: ");
+            choix = scanner.nextInt();
+            System.out.println("----------------------------");
+
+            switch(choix){
+                case 1:
+                    Patient p;
+                    System.out.println("->L'ajout d'un patient");
+                    p = ajouterPat();
+                    patients.add(p);
+                    break;
+                case 2:
+                    System.out.println("->La recherche d'un patient");
+                    chercherPat();
+                    break;
+                case 3:
+                    System.out.println("->L'affichage des patients: ");
+                    afficherPat();
+                    break;
+                case 4:
+                    System.out.println("bien quitte");
+                    break;
+                default:
+                    System.out.println("!!!invalid input");
+            }
+
+        }
+
+    }
+
+    static void GererMed(){
+        int choix = 0;
+        while(choix !=4){
+            System.out.println("---------------------------");
+            System.out.println(" 1. Ajouter un medecin");
+            System.out.println(" 2. Chercher un medecin");
+            System.out.println(" 3. Afficher les medecins ");
+            System.out.println(" 4. Quitter");
+            System.out.println("--Je choisis:  ");
+            choix = scanner.nextInt();
+            System.out.println("----------------------------");
+
+            switch(choix){
+                case 1:
+                    System.out.println("-->L'ajout d'un medecin: ");
+                    Medecin m;
+                    m = ajouterMed();
+                    medecins.add(m);
+                    break;
+                case 2:
+                    System.out.println("-->La recherche d'un medecin: ");
+                    chercherMed();
+                    break;
+                case 3:
+                    System.out.println("-->La liste des medecins: ");
+                    afficherMed();
+                    break;
+                case 4:
+                    System.out.println("c'est bien quitte");
+                    break;
+                default:
+                    System.out.println("invalid input!!!");
+            }
+
+
+
+        }
+
+
+    }
+
+    //Fonctions d'ajout
     static Consultation AjouterCons(){
         int choix = 0;
         while(choix != 3){
@@ -208,8 +293,9 @@ public class Test {
 
 
 
-     return null;
+        return new ConsultationDomicile();
     }
+
     static Patient ajouterPat(){
         String nom;
         int pressionD, pressionS,age;
@@ -249,63 +335,50 @@ public class Test {
 
         return new Patient(nom,age,poids,taille,pressionS,pressionD,diab);
     }
+
     static Medecin ajouterMed(){
         System.out.println("Veuillez Entrer les informations du medecin associe: ");
 
         String nom, inpe, service, grade, spec, qst;
 
-            System.out.print("Entrer le nom du medecin: ");
-            nom = scanner.next();
-            System.out.print("Entrer le inpe du medecin: ");
-            inpe = scanner.next();
-            System.out.print("Entrer le service de medecin: ");
-            service = scanner.next();
-            System.out.print("Entrer la grade du medecin: ");
-            grade = scanner.next();
-            System.out.println();
+        System.out.print("Entrer le nom du medecin: ");
+        nom = scanner.next();
+        System.out.print("Entrer le inpe du medecin: ");
+        inpe = scanner.next();
+        System.out.print("Entrer le service de medecin: ");
+        service = scanner.next();
+        System.out.print("Entrer la grade du medecin: ");
+        grade = scanner.next();
+        System.out.println();
 
-            while(true){
-                System.out.print("Est ce que le medecin est specialiste (yes/no)? : ");
-                qst = scanner.next();
+        while(true){
+            System.out.print("Est ce que le medecin est specialiste (yes/no)? : ");
+            qst = scanner.next();
 
-                if(qst.equals("yes")){
-                    System.out.print("entrer la specialite du medecin: ");
-                    spec = scanner.next();
-                    //check if chirurgien and then return
-                    while(true){
-                        System.out.print("Est ce que le medecin est chirurgien? (yes/no): ");
-                        String qst2 = scanner.next();
-                        if(qst2.equals("yes")){
-                            return new MedecinSpecialiste(nom,inpe,service,grade,spec,true);
-                        }else if(qst2.equals("no")){
-                            return new MedecinSpecialiste(nom,inpe,service,grade,spec,false);
-                        }else{
-                            System.out.println("Non valide input 'yes' or 'no' only");
-                        }
+            if(qst.equals("yes")){
+                System.out.print("entrer la specialite du medecin: ");
+                spec = scanner.next();
+                //check if chirurgien and then return
+                while(true){
+                    System.out.print("Est ce que le medecin est chirurgien? (yes/no): ");
+                    String qst2 = scanner.next();
+                    if(qst2.equals("yes")){
+                        return new MedecinSpecialiste(nom,inpe,service,grade,spec,true);
+                    }else if(qst2.equals("no")){
+                        return new MedecinSpecialiste(nom,inpe,service,grade,spec,false);
+                    }else{
+                        System.out.println("Non valide input 'yes' or 'no' only");
                     }
-
-
-
-                }else if(qst.equals("no")){
-                    return new MedecinGeneraliste(nom,inpe,service,grade);
-                }else{
-                    System.out.println("Non valide input 'yes' or 'no' only ");
                 }
+
+
+
+            }else if(qst.equals("no")){
+                return new MedecinGeneraliste(nom,inpe,service,grade);
+            }else{
+                System.out.println("Non valide input 'yes' or 'no' only ");
             }
-    }
-    static void afficherCons(){
-        System.out.println("---------------------------------");
-        System.out.println("Voici la liste des consultaions: ");
-        System.out.println("---------------------------------");
-        for(Consultation c : consultations ){
-            int i =1;
-            System.out.println("Consultation #"+i);
-            System.out.println(c);
-            i++;
         }
-        System.out.println("---------------------------------");
-
-
     }
 
     static Hospitalisation AjouterHos(){
@@ -321,7 +394,7 @@ public class Test {
             System.out.println(" 1.Hospitalisation Complete");
             System.out.println(" 2.Hospitalisation de Jour");
             System.out.println(" 3.Hospitalisation de Nuit");
-            System.out.println(" 4.Reanimation");
+            System.out.println(" 3.Reanimation");
             System.out.println(" 5.Quitter");
             System.out.print("Je choisis: ");
             choix = scanner.nextInt();
@@ -341,10 +414,10 @@ public class Test {
                     System.out.print("Le motif: ");
                     motif = scanner.next();
                     System.out.print("La description: ");
-                    des = scanner.next();
+                    des = scanner.nextLine();
                     System.out.print("Duree estimative: ");
                     dEst = scanner.nextInt();
-                    System.out.println("Duree reel: ");
+                    System.out.print("Duree reel: ");
                     dReel = scanner.nextInt();
 
                     return new HospitalisationComplete(med,pt,dateEnt,motif,des,dEst,dReel);
@@ -352,7 +425,6 @@ public class Test {
                 case 2:
                     System.out.println("-->Hospitalisation de Jour: ");
                     System.out.println();
-                    System.out.println("");
                     System.out.println("Le medecin consulté: ");
                     med = ajouterMed();
                     System.out.println("Le patient concerne: ");
@@ -362,14 +434,13 @@ public class Test {
                     System.out.print("Le motif: ");
                     motif = scanner.next();
                     System.out.print("La description: ");
-                    des = scanner.next();
+                    des = scanner.nextLine();
 
                     return new HospitalisationJour(med,pt,dateEnt,motif,des);
 
                 case 3:
                     System.out.println("-->Hospitalisation de Nuit: ");
                     System.out.println();
-                    System.out.println("");
                     System.out.println("Le medecin consulté: ");
                     med = ajouterMed();
                     System.out.println("Le patient concerne: ");
@@ -379,11 +450,11 @@ public class Test {
                     System.out.print("Le motif: ");
                     motif = scanner.next();
                     System.out.print("La description: ");
-                    des = scanner.next();
+                    des = scanner.nextLine();
 
                     return new HospitalisationNuit(med,pt,dateEnt,motif,des);
 
-                case 4 :
+                default :
                     System.out.println("-->Reanimation: ");
                     System.out.println();
                     System.out.println("Le medecin consulté: ");
@@ -395,50 +466,90 @@ public class Test {
                     System.out.print("Le motif: ");
                     motif = scanner.next();
                     System.out.print("La description: ");
-                    des = scanner.next();
+                    des = scanner.nextLine();
                     System.out.print("Duree estimative: ");
                     dEst = scanner.nextInt();
-                    System.out.println("Duree reel: ");
+                    System.out.print("Duree reel: ");
                     dReel = scanner.nextInt();
 
                     return new Reanimation(med,pt,dateEnt,motif,des,dEst,dReel);
 
-                case 5:
-                    System.out.println("c'est bien quitte");
-                    break;
-                default:
-                    System.out.println("!!!!Invalid Input");
+
             }
 
         }
+
+
         return null;
     }
-    static void afficherHos(){
 
-        System.out.println("--------------------------------");
-        System.out.println("Affichage des hospitalisations: ");
-        System.out.println("--------------->");
-
-        for(Hospitalisation h : hospitalisations){
-
-            System.out.println(h);
+    //Fonctions d'affichage
+    static void afficherPat(){
+        System.out.println("Voici la liste des patients: ");
+        for(Patient p : patients){
+            System.out.println(p);
             System.out.println();
-
-
         }
+    }
 
+    static void afficherMed(){
+        System.out.println("Voici la liste des medecins: ");
+        for(Medecin m : medecins){
+            System.out.println(m);
+            System.out.println();
+        }
+    }
 
-
+    static void afficherCons(){
+        System.out.println("---------------------------------");
+        System.out.println("Voici la liste des consultaions: ");
+        System.out.println("---------------------------------");
+        for(Consultation c : consultations ){
+            int i =1;
+            System.out.println("Consultation #"+i);
+            System.out.println(c);
+            System.out.println(c);
+            i++;
+        }
+        System.out.println("---------------------------------");
 
 
     }
+
+    static void afficherHos(){
+        System.out.println("Voici la liste des hospitalisations: ");
+        for(Hospitalisation h : hospitalisations){
+            System.out.println(h);
+            System.out.println();
+        }
+    }
+
+  //Fonction de recherche
+    static void chercherMed(){
+        System.out.println("Entrer le nom de medecin a chercher: ");
+        String nm = scanner.nextLine();
+        System.out.println("Voici le resultat du recherche");
+        for(Medecin m : medecins){
+            if(m.getNom().equals(nm)){
+                System.out.println(m);
+            }
+        }
+    }
+
+    static void chercherPat(){
+        System.out.println("Entrer le nom du patient a chercher: ");
+        String nm = scanner.nextLine();
+        System.out.println("Voici le resultat du recherche");
+        for(Patient p : patients){
+            if(p.getNom().equals(nm)){
+                System.out.println(p);
+            }
+        }
+    }
+
 
 }
 
-    //dont forget to close the scanner
-
-    //patient et medecin : ajouter afficher modifier : a ajouter aussi
-    //plus les fcts imlementer de linterface
-    //ajouter la rechercge des patients et medecins
-    //les patients sont deja enregistres avec les medecins donc il suffit de les afficher
+//dont forget to close the scanner
+//ajouter une recherche des consultations en se basant sur le patient
 
