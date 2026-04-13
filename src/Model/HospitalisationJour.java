@@ -1,3 +1,5 @@
+package Model;
+
 public class HospitalisationJour extends Hospitalisation{
     public HospitalisationJour(Medecin medecin, Patient patient, String date_entree, String motif, String description) {
         super(medecin, patient, date_entree, motif, description);

@@ -1,23 +1,25 @@
+package Model;
+
 abstract public class Medecin {
     private String nom;
     private String INPE;
     private String service;
     private String grade;
 
-    Medecin(String nom, String INPE, String service, String grade ) {
+    public Medecin(String nom, String INPE, String service, String grade ) {
         this.nom = nom;
         this.INPE = INPE;
         this.service = service;
         this.grade = grade;
     }
-    Medecin(){
+    public Medecin(){
         this.nom="Dr x";
         this.INPE="0";
         this.service="NA";
         this.grade="NA";
     }
 
-    Medecin(Medecin m){
+    public Medecin(Medecin m){
         this.nom=new String(m.nom);
         this.INPE=new String(m.INPE);;
         this.service=new String(m.service);;
@@ -31,7 +33,7 @@ abstract public class Medecin {
 
     @Override
     public String toString() {
-        return "Medecin{" +
+        return "Model.Medecin{" +
                 "nom='" + nom + '\'' +
                 ", INPE='" + INPE + '\'' +
                 ", service='" + service + '\'' +

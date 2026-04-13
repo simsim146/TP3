@@ -1,3 +1,5 @@
+package Model;
+
 abstract public class Hospitalisation implements Facturation {
 
     private Medecin medecin;
@@ -24,7 +26,7 @@ abstract public class Hospitalisation implements Facturation {
 
     @Override
     public String toString() {
-        return "Hospitalisation{" +
+        return "Model.Hospitalisation{" +
                 "medecin=" + medecin +
                 ", patient=" + patient +
                 ", date_entree='" + date_entree + '\'' +

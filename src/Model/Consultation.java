@@ -1,24 +1,26 @@
+package Model;
+
 abstract public class Consultation implements Facturation {
     private Medecin medecin;
     private Patient patient;
     private String date;
     private String note;
 
-    Consultation (Medecin medecin,Patient patient, String date, String note){
+    public Consultation (Medecin medecin,Patient patient, String date, String note){
         this.medecin=medecin;
         this.patient=patient;
         this.date=date;
         this.note=note;
     }
 
-    Consultation (){
+   public  Consultation (){
         this.medecin=null;
         this.patient=null;
         this.date="01/01/2001";
         this.note="";
     }
 
-    Consultation (Consultation c){
+    public Consultation (Consultation c){
         this.medecin=c.medecin;
         this.patient=c.patient;
         this.date=c.date;
@@ -26,7 +28,7 @@ abstract public class Consultation implements Facturation {
     }
     @Override
     public String toString() {
-        return "Consultation{" +
+        return "Model.Consultation{" +
                 "medecin=" + medecin +
                 ", patient=" + patient +
                 ", date='" + date + '\'' +

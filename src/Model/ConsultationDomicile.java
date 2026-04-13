@@ -1,8 +1,10 @@
+package Model;
+
 public class ConsultationDomicile extends Consultation{
     private String adresse;
 
 
-    ConsultationDomicile(Medecin medecin,
+    public ConsultationDomicile(Medecin medecin,
                          Patient patient,
                          String date,
                          String note,
@@ -11,11 +13,11 @@ public class ConsultationDomicile extends Consultation{
         this.adresse= new String (adresse);
     }
 
-    ConsultationDomicile(){
+    public ConsultationDomicile(){
         super();
         this.adresse= "";}
 
-    ConsultationDomicile(ConsultationDomicile cd){
+    public ConsultationDomicile(ConsultationDomicile cd){
         super(cd);
         this.adresse= new String (cd.adresse);}
 

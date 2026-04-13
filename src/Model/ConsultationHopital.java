@@ -1,7 +1,9 @@
+package Model;
+
 public class ConsultationHopital extends Consultation {
     private String service;
 
-    ConsultationHopital(Medecin medecin,
+    public ConsultationHopital(Medecin medecin,
                         Patient patient,
                         String date,
                         String note,
@@ -10,12 +12,12 @@ public class ConsultationHopital extends Consultation {
         this.service=new String(service);
     }
 
-    ConsultationHopital(){
+    public ConsultationHopital(){
         super();
         service="";
     }
 
-    ConsultationHopital(ConsultationHopital ch){
+    public ConsultationHopital(ConsultationHopital ch){
         super(ch);
         service=ch.service;
     }

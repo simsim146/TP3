@@ -1,3 +1,5 @@
+package Model;
+
 public interface Facturation {
     float calculer_montant();
     float appliquer_reduction();

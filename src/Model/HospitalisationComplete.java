@@ -1,3 +1,5 @@
+package Model;
+
 public class HospitalisationComplete extends Hospitalisation{
     int duree_estimsative;
     int duree_reelle;

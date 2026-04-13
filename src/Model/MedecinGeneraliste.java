@@ -1,13 +1,15 @@
+package Model;
+
 public class MedecinGeneraliste extends Medecin {
 
-    MedecinGeneraliste(String nom, String INPE, String service, String grade ) {
+    public MedecinGeneraliste(String nom, String INPE, String service, String grade ) {
         super(nom,INPE,service,grade);
     }
-    MedecinGeneraliste(){
+    public MedecinGeneraliste(){
         super();
     }
 
-    MedecinGeneraliste(MedecinGeneraliste m){
+    public MedecinGeneraliste(MedecinGeneraliste m){
         super(m);
     }
 

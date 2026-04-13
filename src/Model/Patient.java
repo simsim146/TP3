@@ -1,3 +1,5 @@
+package Model;
+
 public class Patient  {
 
 
@@ -33,7 +35,7 @@ public class Patient  {
         id= patient.id;
     }
    /* public String toString() {
-        return "Patient{" +
+        return "Model.Patient{" +
                 "nom='" + nom + '\'' +
                 ", age=" + age +
                 ", poids=" + poids +
@@ -44,13 +46,13 @@ public class Patient  {
                 '}'; }*/
 
     public String toString() {
-        String msg="Patient d'identifiant:"+id;
+        String msg="Model.Patient d'identifiant:"+id;
         if (diabetique)
-            msg+="Le Patient" + nom + " possede" + age + " ans, il a un poids de=" + poids +" kg et une  taille de=" + taille +"cm"
+            msg+="Le Model.Patient" + nom + " possede" + age + " ans, il a un poids de=" + poids +" kg et une  taille de=" + taille +"cm"
                     +"il a une pression de (" + pressionSys +"," + pressionDia + ")."
                     +"Ce patient est diabetique";
         else
-            msg+="Le Patient" + nom + " possede" + age + " ans, il a un poids de=" + poids +" kg et une  taille de=" + taille +"cm"
+            msg+="Le Model.Patient" + nom + " possede" + age + " ans, il a un poids de=" + poids +" kg et une  taille de=" + taille +"cm"
                     +"il a une pression de (" + pressionSys +"," + pressionDia + ")."
                     +"Ce patient n'est pas diabetique";
 

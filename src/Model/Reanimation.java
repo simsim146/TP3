@@ -1,3 +1,5 @@
+package Model;
+
 public class Reanimation  extends Hospitalisation{
     int duree_estimative;
     int duree_reelle;

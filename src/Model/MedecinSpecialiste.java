@@ -1,18 +1,20 @@
+package Model;
+
 public class MedecinSpecialiste extends Medecin {
     private String specialite;
     private boolean chirurgien;
-    MedecinSpecialiste(String nom, String INPE, String service, String grade, String specialite, boolean chirurgien) {
+    public MedecinSpecialiste(String nom, String INPE, String service, String grade, String specialite, boolean chirurgien) {
         super(nom,INPE,service,grade); //appel du constrcuteur de la classe mere
         this.specialite=new String(specialite);
         this.chirurgien=chirurgien;
     }
-    MedecinSpecialiste(){
+    public MedecinSpecialiste(){
         super(); //appel du constrcuteur par defaut de la classe mere
         specialite="NA";
         chirurgien=false;
     }
 
-    MedecinSpecialiste(MedecinSpecialiste m){
+    public MedecinSpecialiste(MedecinSpecialiste m){
         super(m);
         this.specialite= new String(m.specialite);
         this.chirurgien= m.chirurgien;
