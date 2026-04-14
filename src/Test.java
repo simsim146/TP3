@@ -31,11 +31,11 @@ public class Test {
             switch (choix){
                 case 1:
                     System.out.println("---> Gerer les consultation");
-                    //GererConsultations();
+                    gestionCon.GererConsultations();
                     break;
                 case 2:
                     System.out.println("---> Gerer les hospitalisations");
-                    //GererHospitalisations();
+                    gestionHos.GererHospitalisations();
                     break;
                 case 3:
                     System.out.println("---> Gerer les patients");

@@ -1,6 +1,6 @@
 package Business;
 
-import Model.Consultation;
+import Model.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,22 +8,24 @@ public class GestionCon {
 
     private ArrayList<Consultation> consultations;
     Scanner scanner = new Scanner(System.in);
+    private GestionMed gm;
+    private GestionPat gp;
 
-    public GestionCon(ArrayList<Consultation> cs){
-        consultations = cs;
-    }
-    public GestionCon(){
-        consultations = new ArrayList<Consultation>();
+    public GestionCon(GestionMed gm,GestionPat gp){
+        this.gm = gm;
+        this.gp = gp;
+
     }
 
     //gerer les consu
-   /* void GererConsultations(){
+   public  void GererConsultations(){
         int choix = 0;
         while(choix != 3){
             System.out.println("_______________________");
             System.out.println(" 1. Afficher les Consultations");
             System.out.println(" 2. Ajouter une Model.Consultation");
-            System.out.println(" 3. Quitter");
+            System.out.println(" 3. Chercher une consultation");
+            System.out.println(" 4. Quitter");
             System.out.println();
             System.out.print("Je choisi: ");
             choix = scanner.nextInt();
@@ -45,6 +47,10 @@ public class GestionCon {
 
                     break;
                 case 3:
+                    System.out.println("--> Chercher une consultation");
+
+                    break;
+                case 4:
                     System.out.println("--> bien quitte");
                     break;
                 default:
@@ -54,11 +60,11 @@ public class GestionCon {
 
 
 
-    }*/
+    }
 
 
     //ajouter les consu
-    /*    static Consultation AjouterCons(){
+         Consultation AjouterCons(){
         int choix = 0;
         while(choix != 3){
             System.out.println("Selectionner le type de consultation: ");
@@ -68,71 +74,47 @@ public class GestionCon {
             System.out.print("Je choisi: ");
             choix = scanner.nextInt();
 
+            if( choix == 3){
+                System.out.println("c'est bien quitte");
+                break;
+            }
+            if(choix<1 || choix>3){
+                System.out.println("invalid input!!!!!!");
+            }
+
+            Medecin med = new GestionMed().ajouterMed();
+            Patient pat = new GestionPat().ajouterPat();
+
+            //date noite adrees
+            System.out.println("La date de consultation est: ");
+            String date = scanner.next();
+            System.out.println("La note: ");
+            String note = scanner.next();
+            scanner.nextLine();
+
             switch(choix){
                 case 1:
-                    Patient pat;
-                    Medecin med;
-                    String date,note, service;
-                    System.out.println("--> Model.Consultation Hospitalier");
-                    //fct d'ajouter un patient
-                    pat = ajouterPat();
-                    patients.add(pat);
-                    //fct d'ajouter un medecin
-                    med = ajouterMed();
-                    medecins.add(med);
-                    //get other properties
-                    System.out.println();
-                    System.out.print("Entrer la date du consultation: ");
-                    date = scanner.next();
-                    System.out.print("Entrer les notes du consultation: ");
-                    note = scanner.next();
-                    System.out.print("Entrer le service: ");
-                    service = scanner.next();
-
-                    //retourner
-                    return  new ConsultationHopital(med,pat,date,note,service);
-
+                    System.out.println("Le service de la consultation est: ");
+                    String service = scanner.next();
+                    return new ConsultationHopital(med,pat,date,note,service);
                 case 2:
-                    System.out.println("--> Model.Consultation Domicile");
-                    Patient patd;
-                    Medecin medd;
-                    String dated, notesd, adresse;
-                    //fct d'ajouter un patient
-                    patd = ajouterPat();
-                    patients.add(patd);
-                    //fct d'ajouter un medecin
-                    medd = ajouterMed();
-                    medecins.add(medd);
-                    //get other properties
-                    System.out.println();
-                    System.out.print("Entrer la date de consultation domicile: ");
-                    dated = scanner.next();
-                    System.out.print("Entrer les notes de la consultation: ");
-                    notesd = scanner.next();
-                    System.out.print("Entrer l'adresse de la consultation: ");
-                    adresse = scanner.next();
-
-                    return new ConsultationDomicile(medd,patd,dated,notesd,adresse);
-
-                case 3:
-                    System.out.println("bien quitte");
-                    break;
-                default:
-                    System.out.println(" !!Invalid Input!! ");
+                    System.out.println("L'adresse de consultation est : ");
+                    String adresse = scanner.next();
+                    return new ConsultationDomicile(med,pat,date,note,adresse);
             }
 
         }
 
 
 
-        return new ConsultationDomicile();
-    }*/
+        return null;
+    }
 
     //chercher les
     /**/
 
     //afficher
-    /*    static void afficherCons(){
+         void afficherCons(){
         System.out.println("---------------------------------");
         System.out.println("Voici la liste des consultaions: ");
         System.out.println("---------------------------------");
@@ -146,7 +128,7 @@ public class GestionCon {
         System.out.println("---------------------------------");
 
 
-    }*/
+    }
 
 
 

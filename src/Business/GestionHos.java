@@ -19,12 +19,10 @@ public class GestionHos {
         this.gp = gp;
 
     }
-    public GestionHos(){
-        hospitalisations = new ArrayList<Hospitalisation>();
-    }
+
 
     //gerer les hospi
-     void GererHospitalisations(){
+     public void GererHospitalisations(){
         int choix =0;
         while(choix != 3){
             System.out.println("---------------------------------");
