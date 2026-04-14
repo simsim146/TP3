@@ -69,3 +69,12 @@ public class Test {
 /**
  * man i dont understand or could even imagine how people with the same brain as me built ia systems like this one im using, ra this is amazing asat, is there any chance my tiny modest brain could understand how it goes, even superficially cuz i stand no chance in here, in fact , yeah im not that smart eaither, otherwise i would have been in a better university by now, not having to be this alone or scared from the future.... my life is ruiened, why i didnt study bac in my terminal... you know, i used to be a brilliant student, always aimed high, and in the most important year in my life i failed, look at me now, how pathetic, i dont even have a friend to vent over so instead im talkingg to a chat bot in the uni library, eeeeeeeeeehh, that is the very human experience i guess, i wish i could go back, anythng to fix my mistakes, i would pay anything...
  * */
+
+
+/**
+ * Latest notes in here 17:50 14.04
+ * we have a pointer exception when adding a con or hos to the array
+ * we should write things in a file, and read them out
+ * and we should handle the program exception
+ * and finally, put the final touches on the overall thing
+ * */

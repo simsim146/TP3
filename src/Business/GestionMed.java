@@ -35,7 +35,6 @@ public class GestionMed {
             switch(choix){
                 case 1:
                     System.out.println("-->L'ajout d'un medecin: ");
-                    Medecin m;
                     ajouterMed(); //thats the best  came up with okay
 
                     break;

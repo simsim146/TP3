@@ -39,17 +39,16 @@ public class GestionHos {
             switch(choix){
                 case 1:
                     System.out.println("-->Ajouter une hospitalisation");
-                    Hospitalisation hs;
-                     hs = AjouterHos();
-                    hospitalisations.add(hs);
+                    AjouterHos();
                     break;
                 case 2:
                     //afficher les hospi
                     System.out.println("--> Afficher les hospitalisations");
-                    //afficherHos();
+                    afficherHos();
                     break;
                 case 3:
                    //chercher une hospi
+                    System.out.println("--a developper--");
                 case 4:
                     //sortir
                     System.out.println("c'est bien quittee");
@@ -74,6 +73,7 @@ public class GestionHos {
 
      Hospitalisation AjouterHos(){
         int choix = 0 ;
+        Hospitalisation h;
 
         while(choix != 5){
             System.out.println("-----------------------------------");
@@ -110,35 +110,38 @@ public class GestionHos {
 
             switch(choix){
                 case 1:
-                    System.out.println("--> Hospitalisation Complete");
                     System.out.println("Duree estimative: ");
                     int dEst = scanner.nextInt();
-                    System.out.print("Duree reel");
+                    System.out.println("Duree reel: ");
                     int dReel = scanner.nextInt();
-                    return new HospitalisationComplete(med,pt,dateEnt,motif,des,dEst,dReel);
+                    h = new HospitalisationComplete(med,pt,dateEnt,motif,des,dEst,dReel);
+                    hospitalisations.add(h);
+                    return h;
                 case 2:
-                    System.out.println("--> Hospitalisation de Jour");
-                    return new HospitalisationJour(med,pt,dateEnt,motif, des);
-
+                    h = new HospitalisationJour(med,pt,dateEnt,motif, des);
+                    hospitalisations.add(h);
+                    return h;
                 case 3:
-                    System.out.println("--> Hospitalisation de Nuit");
-                    return new HospitalisationNuit(med,pt,dateEnt,motif,des);
+                    h = new HospitalisationNuit(med,pt,dateEnt,motif,des);
+                    hospitalisations.add(h);
+                    return h;
                 case 4:
-                    System.out.println("--> Reanimation");
                     System.out.println("Duree estimative: ");
                     int dEst1 = scanner.nextInt();
                     System.out.println("Duree Reel: ");
                     int dReel1 =scanner.nextInt();
-                    return new Reanimation(med,pt,dateEnt,motif,des,dEst1,dReel1);
+                    h = new Reanimation(med,pt,dateEnt,motif,des,dEst1,dReel1);
+                    hospitalisations.add(h);
+                    return h;
             }
         }
         return null;
     }
 
-/*
-    //afficher les hospi
 
-     static void afficherHos(){
+
+
+      void afficherHos(){
         System.out.println("Voici la liste des hospitalisations: ");
         for(Hospitalisation h : hospitalisations){
             System.out.println(h);
@@ -153,7 +156,7 @@ public class GestionHos {
 
 
 
-  */
+
 
 
 
