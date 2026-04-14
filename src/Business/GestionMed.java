@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class GestionMed {
 
-    private ArrayList<Medecin> medecins;
-    Scanner scanner = new Scanner(System.in);
+     ArrayList<Medecin> medecins;
+     Scanner scanner = new Scanner(System.in);
 
     public GestionMed(ArrayList<Medecin> medecins){
         this.medecins = medecins;
@@ -36,16 +36,16 @@ public class GestionMed {
                 case 1:
                     System.out.println("-->L'ajout d'un medecin: ");
                     Medecin m;
-                    //m = ajouterMed();
-                  //  medecins.add(m);
+                    ajouterMed(); //thats the best  came up with okay
+
                     break;
                 case 2:
                     System.out.println("-->La recherche d'un medecin: ");
-                   // chercherMed();
+                    chercherMed();
                     break;
                 case 3:
                     System.out.println("-->La liste des medecins: ");
-                    //afficherMed();
+                    afficherMed();
                     break;
                 case 4:
                     System.out.println("c'est bien quitte");
@@ -62,7 +62,15 @@ public class GestionMed {
     }
 
     //ajouter un medecin
-     Medecin ajouterMed(){
+    /**ok listen, the key world is set to default for accessability within the same package,
+     * we add to the list within the method once and for all uses
+     * i wanted to make this class static plus the pat one too, but it will be a bit too messy for my brain to handle
+     * so we are going to declare an object of this class and just call the method
+     */
+
+
+
+    Medecin ajouterMed(){
         System.out.println("Veuillez Entrer les informations du medecin associe: ");
 
         String nom, inpe, service, grade, spec, qst;
@@ -80,6 +88,7 @@ public class GestionMed {
         while(true){
             System.out.print("Est ce que le medecin est specialiste (yes/no)? : ");
             qst = scanner.next();
+            Medecin m;
 
             if(qst.equals("yes")){
                 System.out.print("entrer la specialite du medecin: ");
@@ -89,9 +98,13 @@ public class GestionMed {
                     System.out.print("Est ce que le medecin est chirurgien? (yes/no): ");
                     String qst2 = scanner.next();
                     if(qst2.equals("yes")){
-                        return new MedecinSpecialiste(nom,inpe,service,grade,spec,true);
+                        m = new MedecinSpecialiste(nom,inpe,service,grade,spec,true);
+                        medecins.add(m);
+                        return m;
                     }else if(qst2.equals("no")){
-                        return new MedecinSpecialiste(nom,inpe,service,grade,spec,false);
+                        m = new MedecinSpecialiste(nom,inpe,service,grade,spec,false);
+                        medecins.add(m);
+                        return m;
                     }else{
                         System.out.println("Non valide input 'yes' or 'no' only");
                     }
@@ -100,18 +113,21 @@ public class GestionMed {
 
 
             }else if(qst.equals("no")){
-                return new MedecinGeneraliste(nom,inpe,service,grade);
+                m = new MedecinGeneraliste(nom,inpe,service,grade);
+                medecins.add(m);
+                return m;
             }else{
                 System.out.println("Non valide input 'yes' or 'no' only ");
             }
         }
+
     }
 
 
 
 
     //afficher les medecins
-     void afficherMed(){
+     private void afficherMed(){
         System.out.println("Voici la liste des medecins: ");
         for(Medecin m : medecins){
             System.out.println(m);
@@ -121,8 +137,9 @@ public class GestionMed {
 
 
     //chercher les medecins
-    void chercherMed(){
+    private void chercherMed(){
         System.out.println("Entrer le nom de medecin a chercher: ");
+        scanner.nextLine();
         String nm = scanner.nextLine();
         System.out.println("Voici le resultat du recherche");
         for(Medecin m : medecins){
@@ -133,5 +150,7 @@ public class GestionMed {
     }
 
 
+    public void gest() {
 
+    }
 }

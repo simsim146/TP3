@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class GestionPat {
 
     private ArrayList<Patient> patients ;
-     Scanner scanner = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
 
     public GestionPat(ArrayList<Patient> patients){
             this.patients = patients;
@@ -34,16 +34,15 @@ public class GestionPat {
                 case 1:
                     Patient p;
                     System.out.println("->L'ajout d'un patient");
-                   // p = ajouterPat();
-                    //patients.add(p);
+                    ajouterPat();
                     break;
                 case 2:
                     System.out.println("->La recherche d'un patient");
-                    //chercherPat();
+                    chercherPat();
                     break;
                 case 3:
                     System.out.println("->L'affichage des patients: ");
-                    //afficherPat();
+                    afficherPat();
                     break;
                 case 4:
                     System.out.println("bien quitte");
@@ -60,14 +59,17 @@ public class GestionPat {
 
 
     //ajouter un patient:
-      /*  Patient ajouterPat(){
+        /**this method will add a new patient to the list and return it if needed
+         * */
+        Patient ajouterPat(){
+
+        Patient pt;
         String nom;
         int pressionD, pressionS,age;
         float poids, taille;
-        boolean diab=true, repeat = true;
         System.out.println("Veuiller entrer les informations du patient: ");
         System.out.print("Le nom du patient: ");
-        nom = scanner.next(); //for some very unkown reasons if i use a scanner.nextLine i cant scann an input
+        nom = scanner.next(); //for some very unkown reasons if i use a scanner.nextLine i cant scann an input, solved, kinda, knew the problem origin
         System.out.print("L'age du patient: ");
         age = scanner.nextInt();
         System.out.print("Le poids du patient: ");
@@ -79,30 +81,27 @@ public class GestionPat {
         System.out.print("La pression Diastolique: ");
         pressionD = scanner.nextInt();
 
-        while(repeat){
+        while(true){
             System.out.print("Est-ce que le patient est diabetique (Yes/No)? : ");
             String tmp = scanner.next();
-            switch(tmp){
-                case "Yes":
-                    //diab = true;
-                    repeat = false;
-                    break;
-                case "No":
-                    diab = false;
-                    repeat = false;
-                    break;
-                default:
-                    System.out.println("invalid! \"Yes\" or \"No\" only.");
-                    break;
+            if(tmp.equals("Yes")){
+                pt = new Patient(nom,age,poids,taille,pressionS,pressionD,true);
+                patients.add(pt);
+                return pt;
+            }else if(tmp.equals("No")){
+                pt = new Patient(nom,age,poids,taille,pressionS,pressionD,false);
+                patients.add(pt);
+                return pt;
+            }else{
+                System.out.println("!!!!invalid input");
             }
-        }
 
-        return new Patient(nom,age,poids,taille,pressionS,pressionD,diab);
+        }
     }
 
 
     //afficher les patients
-     void afficherPat(){
+      void afficherPat(){
         System.out.println("Voici la liste des patients: ");
         for(Patient p : patients){
             System.out.println(p);
@@ -112,8 +111,9 @@ public class GestionPat {
 
 
     //chercher un patient
-     void chercherPat(){
+       void chercherPat(){
         System.out.println("Entrer le nom du patient a chercher: ");
+        scanner.nextLine();
         String nm = scanner.nextLine();
         System.out.println("Voici le resultat du recherche");
         for(Patient p : patients){
@@ -122,6 +122,6 @@ public class GestionPat {
             }
         }
     }
-*/
+
 
 }
