@@ -33,9 +33,11 @@ public class GestionCon {
                     break;
                 case 2:
                     System.out.println("-->La liste des consultations");
+                    afficher();
                     break;
                 case 3:
                     System.out.println("-->Chercher une consultation");
+                    System.out.println("will be available soon");
                     break;
                 case 4:
                     System.out.println("-->Quitter");
@@ -88,6 +90,18 @@ public class GestionCon {
         return null;
     }
 
+    public void afficher(){
+        System.out.println("Voici la liste des consultaions: ");
+        System.out.println("---------------------------------");
+        for(Consultation c : consultations ){
+            int i =0;
+            i++;
+            System.out.println("Consultation #"+i);
+            System.out.println(c);
+            System.out.println(c);
+
+        }
+    }
 
 
     /*private ArrayList<Consultation> consultations;

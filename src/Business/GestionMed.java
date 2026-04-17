@@ -34,9 +34,11 @@ public class GestionMed {
                     break;
                 case 2:
                     System.out.println("-->La liste des medeicns: ");
+                    afficher();
                     break;
                 case 3:
                     System.out.println("-->Chercher un medecin: ");
+                    chercher();
                     break;
                 case 4:
                     System.out.println("quitter");
@@ -98,6 +100,25 @@ public class GestionMed {
 
     }
 
+    public void afficher(){
+        System.out.println("Voici la liste des medecins: ");
+        for(Medecin m : medecins){
+            System.out.println(m);
+            System.out.println();
+        }
+    }
+
+    public void chercher(){
+        System.out.println("Entrer le nom de medecin a chercher: ");
+        scanner.nextLine();
+        String nm = scanner.nextLine();
+        System.out.println("Voici le resultat du recherche");
+        for(Medecin m : medecins){
+            if(m.getNom().equals(nm)){
+                System.out.println(m);
+            }
+        }
+    }
 
 
     /* ArrayList<Medecin> medecins;

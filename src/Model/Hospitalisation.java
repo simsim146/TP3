@@ -1,6 +1,8 @@
 package Model;
 
-abstract public class Hospitalisation implements Facturation {
+import java.io.Serializable;
+
+abstract public class Hospitalisation implements Facturation, Serializable {
 
     private Medecin medecin;
     private Patient patient;

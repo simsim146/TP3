@@ -33,8 +33,10 @@ public class GestionHos {
                     break;
                 case 2:
                     System.out.println("--> Afficher les hospitalisations: ");
+                    afficher();
                 case 3:
-                    System.out.println("--> CHercher un ehospitalisation: ");
+                    System.out.println("--> Chercher une hospitalisation: ");
+                    System.out.println("will be available soon");
                     break;
                 case 4:
                     System.out.println("quitte");
@@ -99,6 +101,13 @@ public class GestionHos {
         return null;
     }
 
+    public void afficher(){
+        System.out.println("Voici la liste des hospitalisations: ");
+        for(Hospitalisation h : hospitalisations){
+            System.out.println(h);
+            System.out.println();
+        }
+    }
 
 
 

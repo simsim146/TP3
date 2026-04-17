@@ -6,15 +6,15 @@ import java.util.Scanner;
 
 public class GestionPat {
     static Scanner scanner = new Scanner(System.in);
-    private static ArrayList<Patient> patients ;
+    private static ArrayList<Patient> patients;
 
-    public GestionPat(ArrayList<Patient> patients){
+    public GestionPat(ArrayList<Patient> patients) {
         this.patients = new ArrayList<Patient>(patients);
     }
 
-    public void menu(){
+    public void menu() {
         int choix = 0;
-        while(choix != 4){
+        while (choix != 4) {
 
             System.out.println("1- Ajouter un patient");
             System.out.println("2- Afficher les patients");
@@ -23,7 +23,7 @@ public class GestionPat {
             System.out.println("Je choisi: ");
             choix = Integer.parseInt(scanner.next());
 
-            switch(choix){
+            switch (choix) {
                 case 1:
                     System.out.println("-->L'ajout d'un patient");
                     //appeler la fct
@@ -32,14 +32,16 @@ public class GestionPat {
                     break;
                 case 2:
                     System.out.println("--> Affichage des patients");
+                    afficherPat();
                     break;
                 case 3:
                     System.out.println("--> Chercher des patient");
+                    chercher();
                     break;
                 case 4:
                     System.out.println("quitee");
                     break;
-                default :
+                default:
                     System.out.println("invalid");
             }
         }
@@ -49,7 +51,7 @@ public class GestionPat {
 
     /**
      * return a patient apres remplissage de champs
-     * */
+     */
     static public Patient ajouterPat() {
         Patient pt;
         String nom;
@@ -86,6 +88,32 @@ public class GestionPat {
         }
     }
 
+    public void afficherPat() {
+        System.out.println("Voici la liste des patients: ");
+        for (Patient p : patients) {
+            System.out.println(p);
+            System.out.println();
+        }
+    }
+
+    public void chercher(){
+        System.out.println("Entrer le nom du patient a chercher: ");
+        scanner.nextLine();
+        String nm = scanner.nextLine();
+        System.out.println("Voici le resultat du recherche");
+        for(Patient p : patients){
+            if(p.getNom().equals(nm)){
+                System.out.println(p);
+            }
+        }
+
+    }
+
+
+
+
+
+}
 
    /* private ArrayList<Patient> patients ;
     Scanner scanner = new Scanner(System.in);
@@ -201,4 +229,3 @@ public Patient ajouterPat(){
         }
     }
 */
-}

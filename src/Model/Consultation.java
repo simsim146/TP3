@@ -1,6 +1,8 @@
 package Model;
 
-abstract public class Consultation implements Facturation {
+import java.io.Serializable;
+
+abstract public class Consultation implements Facturation, Serializable {
     private Medecin medecin;
     private Patient patient;
     private String date;

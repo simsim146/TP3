@@ -1,6 +1,8 @@
 package Model;
 
-abstract public class Medecin {
+import java.io.Serializable;
+
+abstract public class Medecin implements Serializable {
     private String nom;
     private String INPE;
     private String service;
