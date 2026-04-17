@@ -1,16 +1,27 @@
 import Model.*;
 import Business.*;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Test {
 
+
+
     static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
 
-        GestionPat gestionPat = new GestionPat();
-        GestionMed gestionMed = new GestionMed();
-        GestionHos gestionHos = new GestionHos(gestionMed, gestionPat);
-        GestionCon gestionCon = new GestionCon(gestionMed, gestionPat);
+        ArrayList<Patient> patients = new ArrayList<Patient>();
+        ArrayList<Medecin> medecins = new ArrayList<Medecin>();
+        ArrayList<Hospitalisation> hospitalisations = new ArrayList<Hospitalisation>();
+        ArrayList<Consultation> consultations = new ArrayList<Consultation>();
+
+
+        GestionPat gestionPat = new GestionPat(patients);
+        GestionMed gestionMed = new GestionMed(medecins);
+       // public GestionHos gestionHos = new GestionHos(hospitalisations);
+         GestionCon gestionCon = new GestionCon(consultations);
+
 
         int choix = 0;
         while(choix != 3){
@@ -31,19 +42,19 @@ public class Test {
             switch (choix){
                 case 1:
                     System.out.println("---> Gerer les consultation");
-                    gestionCon.GererConsultations();
+                    gestionPat.menu();
                     break;
                 case 2:
                     System.out.println("---> Gerer les hospitalisations");
-                    gestionHos.GererHospitalisations();
+
                     break;
                 case 3:
                     System.out.println("---> Gerer les patients");
-                    gestionPat.GererPat();
+                    gestionPat.menu();
                     break;
                 case 4:
                     System.out.println("---> Gerer les medecins");
-                    gestionMed.GererMed();
+                    gestionMed.menu();
                     break;
                 case 5:
                     System.out.println("--> bien quitte");
@@ -66,9 +77,7 @@ public class Test {
 //mettre les fcts dans un package de business en format d'objets
 
 
-/**
- * man i dont understand or could even imagine how people with the same brain as me built ia systems like this one im using, ra this is amazing asat, is there any chance my tiny modest brain could understand how it goes, even superficially cuz i stand no chance in here, in fact , yeah im not that smart eaither, otherwise i would have been in a better university by now, not having to be this alone or scared from the future.... my life is ruiened, why i didnt study bac in my terminal... you know, i used to be a brilliant student, always aimed high, and in the most important year in my life i failed, look at me now, how pathetic, i dont even have a friend to vent over so instead im talkingg to a chat bot in the uni library, eeeeeeeeeehh, that is the very human experience i guess, i wish i could go back, anythng to fix my mistakes, i would pay anything...
- * */
+
 
 
 /**

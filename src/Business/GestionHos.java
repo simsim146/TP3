@@ -2,22 +2,115 @@ package Business;
 
 import Model.*;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GestionHos {
 
+    Scanner scanner = new Scanner(System.in);
+
+    private static ArrayList<Hospitalisation> hospitalisations ;
+
+    public GestionHos(ArrayList<Hospitalisation> h){
+        hospitalisations = new ArrayList<Hospitalisation>(h);
+    }
+
+    public void menu(){
+        int choix = 0;
+        while(choix != 4){
+            System.out.println("1- Ajouter une hospitalisation");
+            System.out.println("2- Afficher les hospitalisations");
+            System.out.println("3- chercher une hospitalisation");
+            System.out.println("4- Quitter");
+            System.out.println("Je choisis: ");
+            choix = Integer.parseInt(scanner.next());
+
+            switch(choix){
+                case 1:
+                    System.out.println("--> Ajouter une hospitalisation: ");
+                    Hospitalisation h = ajouterHos();
+                    hospitalisations.add(h);
+                    break;
+                case 2:
+                    System.out.println("--> Afficher les hospitalisations: ");
+                case 3:
+                    System.out.println("--> CHercher un ehospitalisation: ");
+                    break;
+                case 4:
+                    System.out.println("quitte");
+                    break;
+            }
+        }
+    }
+
+    public Hospitalisation ajouterHos(){
+        int choix = 0 ;
+        Hospitalisation h;
+
+        Medecin med = GestionMed.ajouterMed();
+        Patient pt = GestionPat.ajouterPat();
+
+        while(choix != 5){
+            System.out.println("Choisi le type de hospitalisation: ");
+            System.out.println(" 1.Hospitalisation Complete");
+            System.out.println(" 2.Hospitalisation de Jour");
+            System.out.println(" 3.Hospitalisation de Nuit");
+            System.out.println(" 4.Reanimation");
+            System.out.println(" 5.Quitter");
+            System.out.print("Je choisis: ");
+            choix = Integer.parseInt(scanner.next());
+
+            //lecture des informations communes entre tous
+
+            System.out.println("La date d'entree: ");
+            String dateEnt = scanner.next();
+            System.out.println("Le motif: ");
+            String motif = scanner.next();
+            System.out.print("La description: ");
+            String des = scanner.nextLine();
+
+            switch(choix){
+                case 1:
+                    System.out.println("Duree estimative: ");
+                    int dEst = Integer.parseInt(scanner.next());
+                    System.out.println("Duree reel: ");
+                    int dReel = Integer.parseInt(scanner.next());
+                    h = new HospitalisationComplete(med,pt,dateEnt,motif,des,dEst,dReel);
+                    // hospitalisations.add(h);
+                    return h;
+                case 2:
+                    h = new HospitalisationJour(med,pt,dateEnt,motif, des);
+                  //  hospitalisations.add(h);
+                    return h;
+                case 3:
+                    h = new HospitalisationNuit(med,pt,dateEnt,motif,des);
+                   // hospitalisations.add(h);
+                    return h;
+                case 4:
+                    System.out.println("Duree estimative: ");
+                    int dEst1 = Integer.parseInt(scanner.next());
+                    System.out.println("Duree Reel: ");
+                    int dReel1 =Integer.parseInt(scanner.next());
+                    h = new Reanimation(med,pt,dateEnt,motif,des,dEst1,dReel1);
+                  //  hospitalisations.add(h);
+                    return h;
+            }
+        }
+        return null;
+    }
+
+
+
+
+
+    /*
     private ArrayList<Hospitalisation> hospitalisations ;
-    private GestionMed gm;
-    private GestionPat gp;
+
 
     Scanner scanner = new Scanner(System.in);
 
-    public GestionHos(GestionMed gm,GestionPat gp){
-        this.gm = gm;
-        this.gp = gp;
-
+    public GestionHos(ArrayList<Hospitalisation> hos){
+        hospitalisations = hos;
     }
 
 
@@ -97,8 +190,8 @@ public class GestionHos {
             }
 
             //lecture des informations communes entre tous
-            Medecin med = new GestionMed().ajouterMed();
-            Patient pt = new GestionPat().ajouterPat();
+            //Medecin med = new GestionMed().ajouterMed();
+           // Patient pt = new GestionPat().ajouterPat();
 
             System.out.println("La date d'entree: ");
             String dateEnt = scanner.next();
@@ -146,18 +239,6 @@ public class GestionHos {
         for(Hospitalisation h : hospitalisations){
             System.out.println(h);
             System.out.println();
-        }
-    }
-
-
-
-    //chercher
-
-
-
-
-
-
-
+        }*/
 
 }

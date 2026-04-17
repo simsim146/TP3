@@ -5,20 +5,98 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GestionPat {
+    static Scanner scanner = new Scanner(System.in);
+    private static ArrayList<Patient> patients ;
 
-    private ArrayList<Patient> patients ;
+    public GestionPat(ArrayList<Patient> patients){
+        this.patients = new ArrayList<Patient>(patients);
+    }
+
+    public void menu(){
+        int choix = 0;
+        while(choix != 4){
+
+            System.out.println("1- Ajouter un patient");
+            System.out.println("2- Afficher les patients");
+            System.out.println("3- Chercher un patient");
+            System.out.println("4- Quitter le menu");
+            System.out.println("Je choisi: ");
+            choix = Integer.parseInt(scanner.next());
+
+            switch(choix){
+                case 1:
+                    System.out.println("-->L'ajout d'un patient");
+                    //appeler la fct
+                    //ajouter automatiquement a la liste
+                    ajouterPat();
+                    break;
+                case 2:
+                    System.out.println("--> Affichage des patients");
+                    break;
+                case 3:
+                    System.out.println("--> Chercher des patient");
+                    break;
+                case 4:
+                    System.out.println("quitee");
+                    break;
+                default :
+                    System.out.println("invalid");
+            }
+        }
+
+
+    }
+
+    /**
+     * return a patient apres remplissage de champs
+     * */
+    static public Patient ajouterPat() {
+        Patient pt;
+        String nom;
+        int pressionD, pressionS, age;
+        float poids, taille;
+        System.out.println("Veuiller entrer les informations du patient: ");
+        System.out.print("Le nom du patient: ");
+        nom = scanner.next();
+        System.out.print("L'age du patient: ");
+        age = Integer.parseInt(scanner.next());
+        System.out.print("Le poids du patient: ");
+        poids = Float.parseFloat(scanner.next());
+        System.out.print("La taille du patient: ");
+        taille = Float.parseFloat(scanner.next());
+        System.out.print("La pression Systolyque: ");
+        pressionS = Integer.parseInt(scanner.next());
+        System.out.print("La pression Diastolique: ");
+        pressionD = Integer.parseInt(scanner.next());
+
+        while (true) {
+            System.out.print("Est-ce que le patient est diabetique (yes/no)? : ");
+            String tmp = scanner.next();
+            if (tmp.equals("yes")) {
+                pt = new Patient(nom, age, poids, taille, pressionS, pressionD, true);
+                patients.add(pt);
+                return pt;
+            } else if (tmp.equals("no")) {
+                pt = new Patient(nom, age, poids, taille, pressionS, pressionD, false);
+                patients.add(pt);
+                return pt;
+            } else {
+                System.out.println("invalid input");
+            }
+        }
+    }
+
+
+   /* private ArrayList<Patient> patients ;
     Scanner scanner = new Scanner(System.in);
 
     public GestionPat(ArrayList<Patient> patients){
             this.patients = patients;
     }
-    public GestionPat(){
-        patients = new ArrayList<Patient>();
-    }
 
     //gerer les patients:
-     public void GererPat(){
-        int choix = 0;
+     public void GererPat(int choix = 1;){
+
         while (choix !=4){
             System.out.println("---------------------------");
             System.out.println("La gestion des patients: ");
@@ -60,48 +138,48 @@ public class GestionPat {
 
     //ajouter un patient:
         /**this method will add a new patient to the list and return it if needed
-         * */
-        Patient ajouterPat(){
 
-        Patient pt;
-        String nom;
-        int pressionD, pressionS,age;
-        float poids, taille;
-        System.out.println("Veuiller entrer les informations du patient: ");
-        System.out.print("Le nom du patient: ");
-        nom = scanner.next(); //for some very unkown reasons if i use a scanner.nextLine i cant scann an input, solved, kinda, knew the problem origin
-        System.out.print("L'age du patient: ");
-        age = scanner.nextInt();
-        System.out.print("Le poids du patient: ");
-        poids = scanner.nextFloat();
-        System.out.print("La taille du patient: ");
-        taille = scanner.nextFloat();
-        System.out.print("La pression Systolyque: ");
-        pressionS = scanner.nextInt();
-        System.out.print("La pression Diastolique: ");
-        pressionD = scanner.nextInt();
+public Patient ajouterPat(){
 
-        while(true){
-            System.out.print("Est-ce que le patient est diabetique (Yes/No)? : ");
-            String tmp = scanner.next();
-            if(tmp.equals("Yes")){
-                pt = new Patient(nom,age,poids,taille,pressionS,pressionD,true);
-                patients.add(pt);
-                return pt;
-            }else if(tmp.equals("No")){
-                pt = new Patient(nom,age,poids,taille,pressionS,pressionD,false);
-                patients.add(pt);
-                return pt;
-            }else{
-                System.out.println("!!!!invalid input");
-            }
+    Patient pt;
+    String nom;
+    int pressionD, pressionS,age;
+    float poids, taille;
+    System.out.println("Veuiller entrer les informations du patient: ");
+    System.out.print("Le nom du patient: ");
+    nom = scanner.next(); //for some very unkown reasons if i use a scanner.nextLine i cant scann an input, solved, kinda, knew the problem origin
+    System.out.print("L'age du patient: ");
+    age = scanner.nextInt();
+    System.out.print("Le poids du patient: ");
+    poids = scanner.nextFloat();
+    System.out.print("La taille du patient: ");
+    taille = scanner.nextFloat();
+    System.out.print("La pression Systolyque: ");
+    pressionS = scanner.nextInt();
+    System.out.print("La pression Diastolique: ");
+    pressionD = scanner.nextInt();
 
+    while(true){
+        System.out.print("Est-ce que le patient est diabetique (Yes/No)? : ");
+        String tmp = scanner.next();
+        if(tmp.equals("Yes")){
+            pt = new Patient(nom,age,poids,taille,pressionS,pressionD,true);
+            patients.add(pt);
+            return pt;
+        }else if(tmp.equals("No")){
+            pt = new Patient(nom,age,poids,taille,pressionS,pressionD,false);
+            patients.add(pt);
+            return pt;
+        }else{
+            System.out.println("!!!!invalid input");
         }
+
     }
+}
 
 
     //afficher les patients
-      void afficherPat(){
+    void afficherPat(){
         System.out.println("Voici la liste des patients: ");
         for(Patient p : patients){
             System.out.println(p);
@@ -111,7 +189,7 @@ public class GestionPat {
 
 
     //chercher un patient
-       void chercherPat(){
+    void chercherPat(){
         System.out.println("Entrer le nom du patient a chercher: ");
         scanner.nextLine();
         String nm = scanner.nextLine();
@@ -122,6 +200,5 @@ public class GestionPat {
             }
         }
     }
-
-
+*/
 }
