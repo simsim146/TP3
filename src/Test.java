@@ -8,60 +8,57 @@ import java.io.*;
 
 public class Test {
 
-    static void ecritutre(ArrayList<Patient> p,ArrayList<Medecin> m,ArrayList<Hospitalisation> h,ArrayList<Consultation> c){
-         try( ObjectOutputStream oos = new ObjectOutputStream( new FileOutputStream("/Users/etudiant/Documents/intelliJFiles/data.txt"))){
-         oos.writeObject(p); //make them serialisable
-         oos.writeObject(m);
-         oos.writeObject(c);
-         oos.writeObject(h);
-         }catch(IOException e){
-             e.printStackTrace();
-         }
-    }
+    static public ArrayList<Patient> patients = new ArrayList<Patient>();
+    static ArrayList<Medecin> medecins = new ArrayList<Medecin>();
+    static ArrayList<Hospitalisation> hospitalisations = new ArrayList<Hospitalisation>();
+    static ArrayList<Consultation> consultations = new ArrayList<Consultation>();
 
-    static void lecture(ArrayList<Patient> p,ArrayList<Medecin> m,ArrayList<Hospitalisation> h,ArrayList<Consultation> c){
-        File file = new File("/Users/etudiant/Documents/intelliJFiles/data.txt");
-        if(file.exists() && file.length() > 0){
-            try( ObjectInputStream ois =  new ObjectInputStream( new FileInputStream(file))){
-                p = (ArrayList<Patient>) ois.readObject();
-                m = (ArrayList<Medecin>) ois.readObject();
-                c = (ArrayList<Consultation>) ois.readObject();
-                h = (ArrayList<Hospitalisation>) ois.readObject();
-            }catch (IOException e) {
-                e.printStackTrace(); // Gestion des erreurs [4, 6]
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
+    public static void ecrire(){
+        File file = new File("objects.ser");
+        try{
+            ObjectOutputStream oos = new ObjectOutputStream( new FileOutputStream(file) );
+            oos.writeObject(patients);
+            oos.close();
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
         }
-        if (p == null)
-            p = new ArrayList<Patient>();
-        if (m == null)
-            m = new ArrayList<Medecin>();
-        if (c == null)
-            c = new ArrayList<Consultation>();
-        if (h == null)
-            h = new ArrayList<Hospitalisation>();
 
     }
 
-    static void main(String[] args){
+    public static ArrayList<Patient> lire(){
+        File file = new File("objects.ser");
+        try{
+            ObjectInputStream ois = new ObjectInputStream( new FileInputStream(file));
+
+            ArrayList<Patient> list = (ArrayList<Patient>)ois.readObject();
+            ois.close();
+
+            return list;
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+
+    }
+
+
+
+    public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
 
-        ArrayList<Patient> patients = new ArrayList<Patient>();
-        ArrayList<Medecin> medecins = new ArrayList<Medecin>();
-        ArrayList<Hospitalisation> hospitalisations = new ArrayList<Hospitalisation>();
-        ArrayList<Consultation> consultations = new ArrayList<Consultation>();
-
+        patients = lire();
 
         GestionPat gestionPat = new GestionPat(patients);
         GestionMed gestionMed = new GestionMed(medecins);
         GestionHos gestionHos = new GestionHos(hospitalisations);
         GestionCon gestionCon = new GestionCon(consultations);
 
-        lecture(patients,medecins,hospitalisations,consultations);
+
 
         int choix = 0;
-        while(choix != 3){
+        while(choix != 5){
             System.out.println();
             System.out.println();
             System.out.println("======================================");
@@ -94,8 +91,8 @@ public class Test {
                     gestionMed.menu();
                     break;
                 case 5:
+                    ecrire();
                     System.out.println("--> bien quitte");
-                    ecritutre(patients,medecins,hospitalisations,consultations);
                     break;
                 default:
                     System.out.println("!! Invalid input !!");

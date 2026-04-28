@@ -1,4 +1,4 @@
-package Business;
+package Business; //comprises the patient classe, its serializable
 import Model.Patient;
 
 import java.util.ArrayList;
@@ -6,10 +6,10 @@ import java.util.Scanner;
 
 public class GestionPat {
     static Scanner scanner = new Scanner(System.in);
-    private static ArrayList<Patient> patients;
+     static ArrayList<Patient> patients;
 
     public GestionPat(ArrayList<Patient> patients) {
-        this.patients = new ArrayList<Patient>(patients);
+        this.patients = patients;
     }
 
     public void menu() {
@@ -52,7 +52,7 @@ public class GestionPat {
     /**
      * return a patient apres remplissage de champs
      */
-    static public Patient ajouterPat() {
+     public static Patient ajouterPat() {
         Patient pt;
         String nom;
         int pressionD, pressionS, age;
