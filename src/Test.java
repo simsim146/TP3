@@ -1,7 +1,6 @@
 import Model.*;
 import Business.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
@@ -13,42 +12,27 @@ public class Test {
     static ArrayList<Hospitalisation> hospitalisations = new ArrayList<Hospitalisation>();
     static ArrayList<Consultation> consultations = new ArrayList<Consultation>();
 
-    public static void ecrire(){
-        File file = new File("objects.ser");
-        try{
-            ObjectOutputStream oos = new ObjectOutputStream( new FileOutputStream(file) );
-            oos.writeObject(patients);
-            oos.close();
 
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
 
-    }
 
-    public static ArrayList<Patient> lire(){
-        File file = new File("objects.ser");
-        try{
-            ObjectInputStream ois = new ObjectInputStream( new FileInputStream(file));
 
-            ArrayList<Patient> list = (ArrayList<Patient>)ois.readObject();
-            ois.close();
-
-            return list;
-
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-            return null;
-        }
-
-    }
 
 
 
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
 
-        patients = lire();
+        //il faut charger les liste ici apres leur creation
+        SaveInOut ss = new SaveInOut();
+        //... T_T okkk here what we got
+
+        Object[] data = ss.lecture();
+        patients = (ArrayList<Patient>) data[0];
+        medecins = (ArrayList<Medecin>) data[1];
+        hospitalisations  = (ArrayList<Hospitalisation>) data[2];
+        consultations = (ArrayList<Consultation>) data[3];
+
+
 
         GestionPat gestionPat = new GestionPat(patients);
         GestionMed gestionMed = new GestionMed(medecins);
@@ -58,11 +42,11 @@ public class Test {
 
 
         int choix = 0;
-        while(choix != 5){
+        while (choix != 5) {
             System.out.println();
             System.out.println();
             System.out.println("======================================");
-            System.out.println("Choisir une fonctionnalite (1-2): ");
+            System.out.println("Choisir une fonctionnalite (1-5): ");
             System.out.println(" 1. Gerer les consultations");
             System.out.println(" 2. Gerer les hospitalisations");
             System.out.println(" 3. Gerer les patients");
@@ -70,10 +54,13 @@ public class Test {
             System.out.println(" 5. Quitter");
             System.out.println("--------------------------------------");
             System.out.print("Je choisis: ");
+
             choix = scanner.nextInt();
+            scanner.nextLine(); // clean the buffer
+
             System.out.println("======================================");
 
-            switch (choix){
+            switch (choix) {
                 case 1:
                     System.out.println("---> Gerer les consultation");
                     gestionCon.menu();
@@ -91,7 +78,7 @@ public class Test {
                     gestionMed.menu();
                     break;
                 case 5:
-                    ecrire();
+                    ss.ecrire(patients, medecins, hospitalisations, consultations);
                     System.out.println("--> bien quitte");
                     break;
                 default:

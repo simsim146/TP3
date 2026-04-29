@@ -98,7 +98,6 @@ public class GestionCon {
             i++;
             System.out.println("Consultation #"+i);
             System.out.println(c);
-            System.out.println(c);
 
         }
     }
